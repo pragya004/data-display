@@ -1,0 +1,3 @@
+#lowmargin div svg g>:first-child{
+    fill:red !important;
+}

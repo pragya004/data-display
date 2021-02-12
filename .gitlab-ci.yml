@@ -1,0 +1,41 @@
+image: node:14.15.1 # change to match your project's node version
+
+stages:
+  -build
+  -deploy
+
+cache:
+  paths:
+    - node_modules/
+
+# before_script:
+#   - rm -rf build
+#   - CI=false npm install
+
+build-pages:
+  stage: build
+  script:
+    - rm -rf build
+    - CI=flase npm install
+    - CI=false npm run install
+    - rm -rf public
+    - cp build/index.html build/404.html
+    - mv build public
+  artifacts:
+    paths:
+      -public
+    
+
+pages:
+  stage: deploy
+  script:
+    - ls
+    # - CI=false npm run build
+    # - rm -rf public
+    # - cp build/index.html build/404.html
+    # - mv build public
+  artifacts:
+    paths:
+      - public
+  # only:
+  #   - master
